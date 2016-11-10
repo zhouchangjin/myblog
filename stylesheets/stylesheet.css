@@ -368,6 +368,14 @@ Full-Width Styles
   background: #212121;
 }
 
+#left_bar {
+  float:left;
+  width:20%;
+  height:600px;
+  background:#cccccc;
+}
+
+
 
 
 /*******************************************************************************
