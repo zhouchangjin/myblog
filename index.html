@@ -15,13 +15,20 @@
 <title>长进的blog</title>
 <script>
 function build(data){
-	var html="<h3><a class='anchor' href='"+data.url+"' aria-hidden='true'><span aria-hidden='true' class='octicon octicon-link'></span></a>"+data.title+"</h3>";
+	var html="<h3><a class='anchor' href='/myblog/"+data.url+"' aria-hidden='true'>"+data.title+"</a></h3>";
 	for(var i=0;i<data.content.length;i++){
 		html+="<p>"+data.content[i]+"</p>";
 	}
+	for(prop in data.cookie){
+		$.cookie(prop,data.cookie[prop]);
+	}
+	
 	return html;
 }
 function showtab(name){
+	
+	$('.navgroup').removeClass('active');
+	$('#'+name+'_li').addClass('active');
 	$.get("/myblog/folder/"+name+".json",function(data){
 		var html="";
 		for(var i=0;i<data.length;i++){
@@ -29,7 +36,27 @@ function showtab(name){
 			
 		}
 		$("#main_content").html(html);
-	},'json')
+	},'json');
+}
+
+function buildNav(data){
+	var css="";
+	var html="<li class='navgroup' id='"+data.tab+"_li' "+css+"><a onclick=\"showtab('"+data.tab+"')\">"+data.title+"</a></li>";
+	return html;
+}
+
+function showNav(){
+	var html="";
+	$.get("/myblog/navigation.json",function(data){
+		var html="";
+		for(var i=0;i<data.length;i++){
+			html+=buildNav(data[i]);
+			
+		}
+		$("#nav_ul").html(html);
+		showtab('home');
+	},'json');
+	
 }
 </script>
 </head>
@@ -57,19 +84,8 @@ function showtab(name){
 
 	<!-- MAIN CONTENT -->
 	<div id="left_bar" class="sidebar">
-		<ul  class="nav nav-sidebar">
-			<li class="active">
-				<a onclick="showtab('home')">Introduction</a>
-			</li>
-			<li>
-				<a>Memcache</a>
-			</li>
-			<li>
-				<a>Mysql</a>
-			</li>
-			<li>
-				<a>Introduce</a>
-			</li>
+		<ul id="nav_ul" class="nav nav-sidebar">
+
 		</ul>
 	</div>
 	<div id="main_content_wrap" class="outer">
@@ -93,6 +109,14 @@ function showtab(name){
 	</div>
 
 <script src="javascripts/bootstrap/3.3.0/js/jquery.min.js"></script>
+<script src="javascripts/bootstrap/3.3.0/js/jquery.cookie.js"></script>
 <script src="javascripts/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script>
+$(function(){
+	showNav();
+	
+	
+})
+</script>
 </body>
 </html>
