@@ -22,7 +22,7 @@ function build(data){
 	return html;
 }
 function showtab(name){
-	$.get("/folder/"+name+".json",function(data){
+	$.get("/myblog/folder/"+name+".json",function(data){
 		var html="";
 		for(var i=0;i<data.length;i++){
 			html+=build(data[i]);
