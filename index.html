@@ -13,6 +13,25 @@
     <link href="javascripts/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
 <title>长进的blog</title>
+<script>
+function build(data){
+	var html="<h3><a class='anchor' href='"+data.url+"' aria-hidden='true'><span aria-hidden='true' class='octicon octicon-link'></span></a>"+data.title+"</h3>";
+	for(var i=0;i<data.content.length;i++){
+		html+="<p>"+data.content[i]+"</p>";
+	}
+	return html;
+}
+function showtab(name){
+	$.get("/folder/"+name+".json",function(data){
+		var html="";
+		for(var i=0;i<data.length;i++){
+			html+=build(data[i]);
+			
+		}
+		$("#main_content").html(html);
+	},'json')
+}
+</script>
 </head>
 
 <body>
@@ -40,7 +59,7 @@
 	<div id="left_bar" class="sidebar">
 		<ul  class="nav nav-sidebar">
 			<li class="active">
-				<a>Introduction</a>
+				<a onclick="showtab('home')">Introduction</a>
 			</li>
 			<li>
 				<a>Memcache</a>
@@ -55,57 +74,7 @@
 	</div>
 	<div id="main_content_wrap" class="outer">
 			<section id="main_content" class="inner">
-				<h3>
-					<a id="welcome-to-github-pages" class="anchor"
-						href="#welcome-to-github-pages" aria-hidden="true"><span
-						aria-hidden="true" class="octicon octicon-link"></span></a>欢迎来到我的博客
-				</h3>
-
-				<p>
-						我只是在这里记录一些知识，顺便练习一下前端的开发。
-				</p>
-
-				<h3>
-					<a id="designer-templates" class="anchor"
-						href="#designer-templates" aria-hidden="true"><span
-						aria-hidden="true" class="octicon octicon-link"></span></a>我的仓库介绍
-				</h3>
-
-				<p>
-						只是为了凑点内容，暂时空空的。不要（╯' - ')╯︵ ┻━┻ 
-				</p>
-
-				<h3>
-					<a id="creating-pages-manually" class="anchor"
-						href="#creating-pages-manually" aria-hidden="true"><span
-						aria-hidden="true" class="octicon octicon-link"></span></a>我的联系方式
-				</h3>
-
-				<p>
-					QQ:466796596
-				</p>
-				<p>
-					Email:iamzhouchangjin@163.com
-				</p>
-				<h3>
-					<a id="authors-and-contributors" class="anchor"
-						href="#authors-and-contributors" aria-hidden="true"><span
-						aria-hidden="true" class="octicon octicon-link"></span></a>
-				</h3>
-
-				<p>
-
-				</p>
-
-				<h3>
-					<a id="support-or-contact" class="anchor"
-						href="#support-or-contact" aria-hidden="true"><span
-						aria-hidden="true" class="octicon octicon-link"></span></a>
-				</h3>
-
-				<p>
-	
-				</p>
+				
 			</section>
 
 
