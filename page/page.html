@@ -5,12 +5,18 @@
 <script>
 $(function(){
 	var data=$.cookie('datafile');
-	alert(data);
+	$.get('/myblog/folder/data/'+data+".json",function(data){
+		$('#title_h1').html(data.title);
+	},'json');
 })
 </script>
 </head>
 
 <body>
-hello world
+<section>
+<h1 id='title_h1'></h1>
+
+
+</section>
 </body>
 </html>
