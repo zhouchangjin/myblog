@@ -6,17 +6,31 @@
 $(function(){
 	var data=$.cookie('datafile');
 	$.get('/myblog/folder/data/'+data+".json",function(data){
+		//console.log(data)
+		$('<header><h1 id="title_h1"></h1></header>').appendTo("#my");
 		$('#title_h1').html(data.title);
+		for(var i=0;i<data.content.length;i++){
+			var paragraph=data.content[i];
+			if(paragraph.type=="text"){
+				console.log("h");
+				var html="";
+				for(var j=0;j<paragraph.value.length;j++){
+					var text=paragraph.value[j];
+					html+=text+"<br/>"
+				}
+				$("<p id='p_"+i+"'></p>").appendTo("#my").html(html);
+			}
+		}
 	},'json');
 })
 </script>
 </head>
 
 <body>
-<section>
-<h1 id='title_h1'></h1>
+<article id="my">
 
 
-</section>
+
+</article>
 </body>
 </html>
