@@ -1,7 +1,15 @@
 {
-	"title":"REDIS GUI客户端一览",
-	"content":[{
-		"type":"text",
-		"value":["目前Redis的客户端软件，有以下几款：","(1)RedisClient <a href='https://github.com/caoxinyu/RedisClient'>github地址</a>","(2)"]
-	}]
+	"title": "REDIS GUI客户端一览",
+	"content": 
+	[
+		{
+			"type": "text",
+			"value": 
+			[
+				"目前Redis的客户端软件，有以下几款：",
+				"(1)RedisClient <a href='https://github.com/caoxinyu/RedisClient'>github地址</a>",
+				"(2)"
+			]
+		}
+	]
 }

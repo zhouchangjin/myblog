@@ -1,5 +1,6 @@
 [
 	{
+		"id":"redis_01",
 		"title": "Redis数据库客户端",
 		"content": [
 			"目前有几款免费的Redis客户端值得使用"
@@ -10,10 +11,14 @@
 		}
 	},
 	{
-		"title": "",
+		"id":"server_01",
+		"title": "WEB服务器一览",
 		"content": [
-			""
+			"Web服务器一览"
 		],
-		"url": ""
+		"url": "page/page.html",
+		"cookie":{
+			"datafile":"servers"
+		}
 	}
 ]

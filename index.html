@@ -15,13 +15,18 @@
 <title>长进的blog</title>
 <script>
 function build(data){
-	var html="<h3><a class='anchor' href='/myblog/"+data.url+"' aria-hidden='true'>"+data.title+"</a></h3>";
+	var html="<h3><a id='blog_item_"+data.id+"' class='anchor' href='/myblog/"+data.url+"' aria-hidden='true'>"+data.title+"</a></h3>";
 	for(var i=0;i<data.content.length;i++){
 		html+="<p>"+data.content[i]+"</p>";
 	}
-	for(prop in data.cookie){
-		$.cookie(prop,data.cookie[prop]);
-	}
+	var alink=$('#blog_item_'+data.id);
+	alink.click(function(){
+		for(prop in data.cookie){
+			$.cookie(prop,data.cookie[prop]);
+		}
+	});
+	
+	
 	
 	return html;
 }
