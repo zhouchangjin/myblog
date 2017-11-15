@@ -35,6 +35,7 @@ function showtab(name){
 		for(var i=0;i<data.length;i++){
 			var alink=$('#blog_item_'+data[i].id);
 			alink.click(function(){
+				alert('')
 				for(prop in data[i].cookie){
 					$.cookie(prop,data[i].cookie[prop]);
 				}
