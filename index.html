@@ -19,15 +19,6 @@ function build(data){
 	for(var i=0;i<data.content.length;i++){
 		html+="<p>"+data.content[i]+"</p>";
 	}
-	var alink=$('#blog_item_'+data.id);
-	alink.click(function(){
-		for(prop in data.cookie){
-			$.cookie(prop,data.cookie[prop]);
-		}
-	});
-	
-	
-	
 	return html;
 }
 function showtab(name){
@@ -41,6 +32,14 @@ function showtab(name){
 			
 		}
 		$("#main_content").html(html);
+		for(var i=0;i<data.length;i++){
+			var alink=$('#blog_item_'+data[i].id);
+			alink.click(function(){
+				for(prop in data[i].cookie){
+					$.cookie(prop,data[i].cookie[prop]);
+				}
+			});
+		}
 	},'json');
 }
 
