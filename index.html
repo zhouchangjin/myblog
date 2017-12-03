@@ -15,7 +15,7 @@
 <title>长进的blog</title>
 <script>
 function build(data){
-	var html="<h3><a id='blog_item_"+data.id+"' class='anchor' href='/myblog/"+data.url+"' aria-hidden='true'>"+data.title+"</a></h3>";
+	var html="<h3><a target='_blank' id='blog_item_"+data.id+"' class='anchor' href='/myblog/"+data.url+"' aria-hidden='true'>"+data.title+"</a></h3>";
 	for(var i=0;i<data.content.length;i++){
 		html+="<p>"+data.content[i]+"</p>";
 	}
@@ -34,12 +34,18 @@ function showtab(name){
 		$("#main_content").html(html);
 		for(var i=0;i<data.length;i++){
 			var alink=$('#blog_item_'+data[i].id);
-			alink.click(function(){
-				alert('')
-				for(prop in data[i].cookie){
-					$.cookie(prop,data[i].cookie[prop]);
+			var cnt=0;
+			var urllink=alink.attr("href");
+			for(prop in data[i].cookie){
+				cnt++;
+				
+				if(cnt==1){
+					urllink+="?"+prop+"="+data[i].cookie[prop];
+				}else{
+					urllink+="&"+prop+"="+data[i].cookie[prop];
 				}
-			});
+			}
+			alink.attr("href",urllink);
 		}
 	},'json');
 }

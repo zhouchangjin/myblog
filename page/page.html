@@ -3,9 +3,22 @@
 <script src="/myblog/javascripts/bootstrap/3.3.0/js/jquery.min.js"></script>
 <script src="/myblog/javascripts/bootstrap/3.3.0/js/jquery.cookie.js"></script>
 <script>
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
 $(function(){
-	var data=$.cookie('datafile');
-	$.get('/myblog/folder/data/'+data+".json",function(data){
+	var data=getUrlVars();
+	
+	$.get('/myblog/folder/data/'+data.datafile+".json",function(data){
 		//console.log(data)
 		$('<header><h1 id="title_h1"></h1></header>').appendTo("#my");
 		$('#title_h1').html(data.title);
